@@ -26,9 +26,7 @@
 #### ステップ2: ユーザースクリプトのインストール
 
 1.  ブラウザに **Tampermonkey** 拡張機能がインストールされていることを確認します。([Tampermonkey](https://www.tampermonkey.net/))
-2.  Tampermonkeyのダッシュボードを開き、「新規スクリプトを追加」を選択します。
-3.  `script.user.js` ファイルの中身をすべてコピーし、エディタに貼り付けます。
-4.  「ファイル」メニューから「保存」をクリックして、スクリプトを有効にします。
+2.  [script.user.js](https://github.com/h4ribote/gemini-auto-responder/raw/refs/heads/main/script.user.js)を開いてスクリプトをインストールします。
 
 #### ステップ3: クライアントの実行
 
