@@ -18,7 +18,7 @@
     'use strict';
 
     const DEFAULTS = {
-        isEnabled: true,
+        isEnabled: false,
         serverUrl: 'http://127.0.0.1:8000/api',
         pollingInterval: 3000
     };
@@ -307,7 +307,7 @@
     }
 
     function loadSettings() {
-        settings.isEnabled = GM_getValue('isEnabled', DEFAULTS.isEnabled);
+        settings.isEnabled = false;
         settings.serverUrl = GM_getValue('serverUrl', DEFAULTS.serverUrl);
         settings.pollingInterval = GM_getValue('pollingInterval', DEFAULTS.pollingInterval);
 
@@ -345,7 +345,6 @@
 
     function handleToggleChange(event) {
         const isEnabled = event.target.checked;
-        GM_setValue('isEnabled', isEnabled);
         settings.isEnabled = isEnabled;
 
         if (isEnabled) {
