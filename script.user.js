@@ -81,7 +81,6 @@
                 settings.isEnabled = false;
                 updateToggleState();
                 stopPolling();
-                alert('サーバーへの接続に失敗しました。設定を確認し、スクリプトを再度有効にしてください。');
             }
         });
     }
