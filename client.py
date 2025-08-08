@@ -37,7 +37,7 @@ class GeminiClient:
             else:
                 raise requests.exceptions.RequestException(f"An unexpected status occurred: {response}", request=None, response=response)
 
-    def gemini(self, prompt_text: str, sleep_time: float) -> str:
+    def gemini(self, prompt_text: str, sleep_time: float = 3) -> str:
         return self.get_response(self.send_prompt(prompt_text), sleep_time)
 
 class GeminiAsyncClient:
@@ -75,7 +75,7 @@ class GeminiAsyncClient:
             else:
                 raise requests.exceptions.RequestException(f"An unexpected status occurred: {response}", request=None, response=None)
     
-    async def gemini(self, prompt_text: str, sleep_time: float) -> str:
+    async def gemini(self, prompt_text: str, sleep_time: float = 3) -> str:
         return await self.get_response(await self.send_prompt(prompt_text), sleep_time)
 
 def main(prompt:str|None = None):
