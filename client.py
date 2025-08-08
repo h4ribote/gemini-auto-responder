@@ -25,7 +25,7 @@ class GeminiClient:
             raise requests.exceptions.RequestException("Error: Could not get task ID from server.", request=None, response=response)
         return task_id
     
-    def get_response(self, task_id: str) -> str:
+    def get_response(self, task_id: str, sleep_time: float = 3) -> str:
         while True:
             response = self._get(f"/get_response/{task_id}")
 
@@ -33,9 +33,12 @@ class GeminiClient:
             if status == "completed":
                 return response.get("response")
             elif status in ["pending", "processing"]:
-                time.sleep(3)
+                time.sleep(sleep_time)
             else:
                 raise requests.exceptions.RequestException(f"An unexpected status occurred: {response}", request=None, response=response)
+
+    def gemini(self, prompt_text: str, sleep_time: float) -> str:
+        return self.get_response(self.send_prompt(prompt_text), sleep_time)
 
 class GeminiAsyncClient:
     def __init__(self, API_BASE_URL: str = "http://127.0.0.1:8000/api"):
@@ -60,7 +63,7 @@ class GeminiAsyncClient:
             raise requests.exceptions.RequestException("Error: Could not get task ID from server.", request=None, response=None)
         return task_id
     
-    async def get_response(self, task_id: str) -> str:
+    async def get_response(self, task_id: str, sleep_time: float = 3) -> str:
         while True:
             response = await self.aio_get(f"/get_response/{task_id}")
 
@@ -68,9 +71,12 @@ class GeminiAsyncClient:
             if status == "completed":
                 return response.get("response")
             elif status in ["pending", "processing"]:
-                await asyncio.sleep(3)
+                await asyncio.sleep(sleep_time)
             else:
                 raise requests.exceptions.RequestException(f"An unexpected status occurred: {response}", request=None, response=None)
+    
+    async def gemini(self, prompt_text: str, sleep_time: float) -> str:
+        return await self.get_response(await self.send_prompt(prompt_text), sleep_time)
 
 def main(prompt:str|None = None):
     prompt = prompt if prompt else """pythonで"Hello world"を表示するには"""
