@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gemini Auto-Responder
 // @namespace    http://tampermonkey.net/
-// @version      2.7.1
+// @version      2.7.2
 // @description  Adds an always-visible settings panel to configure server URL and polling interval.
 // @author       h4ribote
 // @match        https://gemini.google.com/app*
